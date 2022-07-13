@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block title %} Завершение регистрации {% endblock %}
+
+
+{% block content %}
+<h1>{% trans "Финальная проверка email адресса" %}</h1>
+
+{% if confirmation %}
+
+{% user_display confirmation.email_address.user as user_display %}
+
+<p>{% blocktrans with confirmation.email_address.email as email %}Пожалуйста подтвердите что почта <a href="mailto:{{ email }}">{{ email }}</a> является вашей.{% endblocktrans %}</p>
+
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+{% csrf_token %}
+    <button type="submit" class="btn btn-success">Подтвердить</button>
+</form>
+
+{% else %}
+
+{% url 'account_email' as email_url %}
+
+<p>{% blocktrans %}Ссыкла подвтерждения является недействительной (либой просроченной). Пожалуйста <a href="{{ email_url }}"> повторите запрос.</a>.{% endblocktrans %}</p>
+
+{% endif %}
+
+{% endblock %}

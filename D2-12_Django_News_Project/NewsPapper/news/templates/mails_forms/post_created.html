@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NewPost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .btn-email-my {
+               text-decoration: none;
+               padding: 10px;
+               margin-bottom: 10px;
+               font-size: 14px;
+               text-transform: uppercase;
+               }
+
+        .btn-email-my:hover {
+                    padding: 14px;
+                    background-color: #a947bf;
+                    color: white
+                    }
+    </style>
+</head>
+<body>
+<h3>Здравствуй, {{ username }}. Новая статья в твоём любимом разделе!</h3>
+{{ single_news.text_content|truncatechars:50 }}
+<br>
+<br>
+<a href="http://127.0.0.1:8000{% url 'single_news' single_news.id %}" class="btn-email-my">
+    Открыть новость</a>
+
+</body>
+</html>

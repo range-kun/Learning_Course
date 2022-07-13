@@ -1,0 +1,48 @@
+{% extends 'news/default.html' %}
+{% load my_filters %}
+
+{% block title %}
+News
+{% endblock %}
+
+{% block content %}
+<h1>Подборка новостей</h1>
+<h2> Всего новостей на странице: {{ news|length }}</h2>
+<a href="{% url 'create_news' %}" class="btn btn-primary" style="margin-bottom: 10px">Добавить новость</a>
+{% for single_news in news %}
+    <div class="card text-center">
+      <div class="card-header">
+          <h5>{{ single_news.header|censor }}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ single_news.text_content|truncatechars:50|censor }}</p>
+        <a href="{{ single_news.get_absolute_url }}" class="btn btn-primary">Открыть новость</a>
+      </div>
+      <div class="card-footer text-muted">
+          {{ single_news.date_of_creation|date:'d M Y'}}
+      </div>
+    </div>
+    <br>
+{% endfor %}
+
+{% if is_paginated %}
+    <ul class="pagination justify-content-md-center">
+    {% if  page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">Первая</a></li>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <li class="page-item active"><a class="page-link">{{ num }}</a></li>
+        {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></li>
+    {% endif %}
+
+    </ul>
+{% endif %}
+{% endblock %}

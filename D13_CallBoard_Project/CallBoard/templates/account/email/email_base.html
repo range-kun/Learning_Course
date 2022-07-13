@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+  <meta charset="UTF-8">
+
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+
+    <style>
+    .btn-email-my {
+           text-decoration: none;
+           padding: 10px;
+           margin-bottom: 25px;
+           font-size: 14px;
+           text-transform: uppercase;
+           }
+
+        .btn-email-my:hover {
+                background-color: #768a6e;
+                color: white
+                }
+    </style>
+
+ </head>
+
+<body style="width:100%;font-family:arial, 'helvetica neue', helvetica, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
+ {% load account %}
+  <div class="es-wrapper-color" style="background-color:#C3EEB3; width: 600px; margin-left:auto; margin-right:auto">
+       <table class="es-wrapper" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:40%;
+       height:100%;background-repeat:repeat;background-position:center; margin-left:auto; margin-right:auto" width="100%" cellspacing="0" cellpadding="0">
+     <tbody>
+        <tr>
+          <td style="padding:0;Margin:0;padding-bottom:15px" align="left">
+            <h2 style="Margin:0; line-height:29px; mso-line-height-rule:exactly; font-family: 'Roboto', sans-serif; font-size:24px;
+            font-style:normal;font-weight:600;color:#28963A; text-align: center">
+                {% block header %}
+                {% endblock %}
+            </h2>
+            <br>
+          </td>
+         </tr>
+         <tr>
+          <td style="padding:0;Margin:0;font-size:0px" align="center">
+            <img class="adapt-img"
+               src="https://lrbgao.stripocdn.email/content/guids/CABINET_07ce8a158080cc3a0f567d69068bb8cf/images/51421622325993155.jpg"
+               alt="Изображение" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="560">
+           </td>
+         </tr>
+         <tr>
+          <td style="padding:0;Margin:0;padding-top:20px" align="left">
+              {% block content %}
+              {% endblock %}
+          </td>
+        </tr>
+    </tbody>
+   </table>
+  </div>  
+</body>
+</html>

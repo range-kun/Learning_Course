@@ -1,0 +1,27 @@
+{% extends 'account/email/email_base.html' %}
+
+{% block title %}
+    Торопись помочь!
+{% endblock %}
+
+{% block header %}
+    Мы собрали для вас все объявления за {{yesterday}}
+{% endblock %}
+
+{% block content %}
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly; font-family: 'Roboto', sans-serif; line-height:21px;color:#333333;font-size:14px">
+    Надеемся что вас заинтересует наша подборка, и вы сможете помочь свои друзьям.
+{% for notice in notices %}
+    <h4>{{ notice_news.header }}</h4>
+    <div style="font-family: Robot, sans-serif; font-size: 14px">
+        {{ notice.text_content|truncatechars:50 }}
+    </div>
+    <br>
+    <a href="http://127.0.0.1:8000{% url 'single_notice' notice.id %}" class="btn-email-my">
+        Открыть новость</a>
+    <br>
+    <hr>
+{% endfor %}
+
+</p>
+{% endblock %}

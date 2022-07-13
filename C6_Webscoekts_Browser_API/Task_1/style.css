@@ -1,0 +1,19 @@
+.btn{
+  padding: 10px 15px;
+  background-color: #c6d522;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+}
+
+.btn_text {
+  margin-right: 10px;
+}
+
+.btn_icon {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}

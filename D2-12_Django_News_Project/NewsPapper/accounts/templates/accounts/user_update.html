@@ -1,0 +1,19 @@
+{% extends 'accounts/default.html' %}
+
+{% block title %}
+Редактирование личных данных
+{% endblock %}
+
+{% block content %}
+<h3> Изменить персональные данные </h3>
+<form method="Post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+         <label>{{ field.label }}</label>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <input type="submit" value="Изменить данные" class="btn btn-primary">
+</form>
+{% endblock %}

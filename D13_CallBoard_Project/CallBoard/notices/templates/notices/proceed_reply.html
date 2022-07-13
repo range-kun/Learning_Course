@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Обработка{% endblock %}
+
+{% block content %}
+<h1>{{ reply.text }}</h1>
+{% if reply.accepted %}
+    Вы приняли предложение помощи от пользователя {{reply.user}}. Оповещение будет отправлено на почту данного пользователя!
+{% else %}
+    Вы отклонили предложение помощи от пользователя {{reply.user}}.
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends  'base.html' %}
+
+{% block title %}
+{{ notice.header }}
+{% endblock %}
+
+{% block content %}
+<div class="card text-center">
+  <div class="card-header">
+    {{notice.category}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{notice.header}}</h5>
+    <p class="card-text" style="text-align: left !important">{{notice.text_content}}</p>
+
+  <div id="carouselExampleControls" class="carousel slide marg" data-bs-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        {% if first_con.is_photo %}
+            <img src="{{ first_con.image_file.url }}" class="d-block w-100">
+        {% else %}
+          <video width="530" height="440" controls>
+            <source src="{{ first_con.video_file.url }}" type="video/mp4"> </source>
+          </video>
+        {% endif %}
+      </div>
+
+    {% for content in rest_con %}
+      <div class="carousel-item">
+            {% if content.is_photo %}
+                <img src="{{ content.image_file.url }}" class="d-block w-100">
+            {% else %}
+              <video width="530" height="440" controls>
+                <source src="{{ content.video_file.url }}" type="video/mp4"> </source>
+              </video>
+            {% endif %}
+      </div>
+    {% endfor %}
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"
+    style="margin-left: -35px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"
+            style="margin-right: -35px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+  </div>
+    {% if is_author %}
+      <a href="{% url 'update' notice.id %}" class="btn btn-secondary marg">Отредактировать</a>
+      <a href="{% url 'delete' notice.id %}" class="btn btn-danger marg">Удалить объявление</a>
+    {% elif user.is_authenticated %}
+      {% if is_not_replied %}
+      <a href="{% url 'create_reply' notice.id %}" class="btn btn-success marg">Откликнуться</a>
+      {% endif %}
+    {% endif %}
+    <h4 class="text-center">Отклики</h4>
+    {% for reply in replies %}
+    <div class="row marg">
+      <div class="col-12">
+        <span class="text-secondary" style="float:left">От {{ reply.user.email }}:</span>
+      </div>
+      <div class="col " style="text-align: left !important">{{ reply.text }}</div>
+    </div>
+    {% endfor %}
+  <div class="card-footer text-muted">
+    {{notice.date_of_creation|date:'d-m-Y'}}
+    {{notice.author}}
+  </div>
+</div>
+</div>
+<br>
+{% endblock %}

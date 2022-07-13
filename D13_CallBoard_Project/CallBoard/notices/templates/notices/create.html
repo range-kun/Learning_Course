@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавить объявление
+{% endblock %}
+
+
+{% block content %}
+<div class="text-center marg">
+    <h3 class="text-success logo align-self-center">Добавить объявление</h3>
+</div>
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row marg text-center">
+        <div class="col">
+            {{ form.header.label }}
+        </div>
+        <div class="col">
+            {{ form.category.label }}
+        </div>
+    </div>
+    <div class="row marg">
+        <div class="col">
+            {{ form.header }}
+        </div>
+        <div class="col">
+            {{ form.category }}
+        </div>
+    </div>
+        {{ form.text_content }}
+    <div class="row">
+        <div class="col">
+            <div class="form-group m-3">
+                <label class="marg">Прикрепить фото</label>
+                {{ form.images }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group m-3">
+                <label class="marg">Прикрепить видео</label>
+                {{ form.videos }}
+            </div>
+        </div>
+    </div>
+    {{ form.author }}
+    <div class="row text-center">
+        <div class="col">
+            <input type="submit" class="btn btn-success" value="Добавить запись">
+        </div>
+    </div>
+</form>
+{% endblock %}

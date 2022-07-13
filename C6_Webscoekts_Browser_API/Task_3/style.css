@@ -1,0 +1,62 @@
+.chat{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+.control{
+	display: inline-block;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+.inp-text{
+	width: 350px;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 3px;
+	padding: 5px 10px;
+	border-color: #e4aae2;
+	border-width: 2px;
+	box-shadow: none;
+	border-style:solid;
+}
+
+.btn{
+	font-size: 14px;
+	font-weight: 600;
+	background-color: #e4aae2;
+	border: none;
+	border-radius: 3px;
+	padding: 6px 10px;
+	margin: 0 5px;
+}
+
+.btn:hover{
+	transform: scale(1.05);
+}
+
+.message_field{
+	border-style: solid;
+	border-radius: 5px;
+	border-width: 2px;
+	border-color: #e4aae2;
+	padding: 10px;
+	width: 40%;
+	word-wrap: break-word;
+	display: block;
+}
+
+.output{
+	width: 690px;
+	margin: 0 auto;
+}
+
+.geo_link{
+	text-decoration: none;
+	color: #257bd4;
+	font-weight: 600;
+	margin-top: 10px;
+}
+
+

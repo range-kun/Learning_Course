@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Подтвердить удаление
+{% endblock %}
+
+{% block content %}
+<div class="card text-center">
+  <div class="card-header">
+    {{delete.category}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{delete.header}}</h5>
+    <p class="card-text">{{delete.text_content}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    {{delete.date_of_creation|date:'d-m-Y'}}
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Подтвердить" class="btn btn-danger marg">
+  </form>
+</div>
+</div>
+{% endblock %}

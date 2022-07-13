@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NewPost</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .btn-email-my {
+               text-decoration: none;
+               padding: 10px;
+               margin-bottom: 10px;
+               font-size: 14px;
+               text-transform: uppercase;
+               }
+
+        .btn-email-my:hover {
+                    background-color: #a947bf;
+                    color: white
+                    }
+    </style>
+</head>
+<body>
+<h3>Здравствуйте! Мы собрали для вас все новости в вашем любимом разделе за прошедую неделю!</h3>
+{% for single_news in news %}
+<h4>{{ single_news.header }}</h4>
+{{ single_news.text_content|truncatechars:50 }}
+<br>
+<br>
+<a href="http://127.0.0.1:8000{% url 'single_news' single_news.id %}" class="btn-email-my">
+    Открыть новость</a>
+<br>
+<br>
+<hr>
+<br>
+{% endfor %}
+</body>
+</html>

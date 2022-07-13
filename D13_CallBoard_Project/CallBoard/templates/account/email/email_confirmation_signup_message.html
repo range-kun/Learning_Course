@@ -1,0 +1,18 @@
+{% extends 'account/email/email_base.html' %}
+{% block title %}
+Новое письмо
+{% endblock %}
+
+{% block header %}
+Добро пожаловать в мир MMORPG
+{% endblock %}
+
+{% block content %}
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly; font-family: 'Roboto', sans-serif; line-height:21px;color:#333333;font-size:14px">
+<strong>Здравствуйте {{ user.username }}!</strong>
+<br>
+Поздравляем вас с созданием учетной записи на сайте объявлений MMORPG.
+Вы получили данное письмо, так как ваш e-mail был указан при регистрации на нашем сайте.
+Для завершения регистрации <a href="{{ activate_url }}">пройдите по ссылке</a> и активируйте ваш аккаунт.
+</p>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %} Подтверждение email {% endblock %}
+
+{% block content %}
+    <h1>{% trans "Подтвердите свой email адресс" %}</h1>
+
+    <p>{% blocktrans %}Мы отправили письмо на ваш email для подтверждения. Следуйте по указанной сылке в пиьсме для завершения регистрации.{% endblocktrans %}</p>
+
+{% endblock %}

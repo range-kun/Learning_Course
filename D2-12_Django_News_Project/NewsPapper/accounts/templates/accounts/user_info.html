@@ -1,0 +1,49 @@
+{% extends 'accounts/default.html' %}
+
+{% block title %}
+Personal Information
+{% endblock %}
+
+{% block content %}
+<h3> Персональные данные </h3>
+<br>
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-md-center">
+        <div class="ms-2 me-auto">
+          <div class="font-weight-bold">{{ user.username }}</div>
+          username
+        </div>
+    </li>
+  <li class="list-group-item d-flex justify-content-md-center">
+    <div class="ms-2 me-auto">
+      <div class="font-weight-bold">{{ user.email }}</div>
+      Email
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-md-center">
+    <div class="ms-2 me-auto">
+        {% if user.first_name %}
+      <div class="font-weight-bold">{{ user.first_name }}</div>
+        {% else %}
+        <div class="font-weight-bold"> ---- </div>
+        {% endif %}
+      First name
+    </div>
+  </li>
+    <li class="list-group-item d-flex justify-content-md-center">
+    <div class="ms-2 me-auto">
+        {% if user.last_name %}
+      <div class="font-weight-bold">{{ user.last_name }}</div>
+        {% else %}
+        <div class="font-weight-bold"> ---- </div>
+        {% endif %}
+      Last name
+    </div>
+    </li>
+</ul>
+<br>
+<a href="{% url 'personal:update_user' user.id %}" class="btn btn-primary">Изменить данные</a>
+{% if is_not_author %}
+<a href="{% url 'personal:become_author' %}" class="btn btn-info" style="margin-left:10px"> Стать автором </a>
+{% endif %}
+{% endblock %}

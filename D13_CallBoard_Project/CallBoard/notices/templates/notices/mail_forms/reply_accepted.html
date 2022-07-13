@@ -1,0 +1,20 @@
+{% extends 'account/email/email_base.html' %}
+
+{% block title %}
+Отклик принят
+{% endblock %}
+
+{% block header %}
+{{ author_of_notice.username }} принял ваше отклик!
+{% endblock %}
+
+{% block content %}
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly; font-family: 'Roboto', sans-serif; line-height:21px;color:#333333;font-size:14px">
+<strong>Здравствуйте {{ author_of_reply.username }}!</strong>
+<br>
+    Автор поста {{ notice.header }} принял ваше предложение ({{ reply.text }} ) о помощи.
+    <br>
+    Желаем вам удачного дня!
+
+</p>
+{% endblock %}

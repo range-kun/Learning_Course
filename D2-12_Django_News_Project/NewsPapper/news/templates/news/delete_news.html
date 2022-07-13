@@ -1,0 +1,19 @@
+{% extends 'news/default.html' %}
+{% load my_filters %}
+
+{% block title %}
+Удалить новость
+{% endblock %}
+
+{% block content %}
+<h2>Вы действительно хотите удалить данную новость?</h2>
+<h3> {{ delete_in_view.author.user.username }} - {{ delete_in_view.header|censor }}</h3>
+<p style="padding-left:250px; padding-right:250px">{{ delete_in_view.text_content|censor }}</p>
+  <div class="card-footer text-muted">
+      {{ delete_in_view.date_of_creation|date:'d M Y h:m'}}
+  </div>
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Подтвердить" class="btn btn-danger">
+</form>
+{% endblock %}

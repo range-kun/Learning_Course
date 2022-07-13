@@ -1,0 +1,30 @@
+{% extends 'news/default.html' %}
+{% load my_filters %}
+
+{% block title %}
+News
+{% endblock %}
+
+{% block content %}
+<h2> Подборка новостей по категории {{ category }}</h2>
+<a href="{% url 'create_news' %}" class="btn btn-primary" style="margin-bottom: 10px">Добавить новость</a>
+{% if is_not_subscribed %}
+<a href="{% url 'subscribed' %}?category={{ category|lower }}" class="btn btn-info" style="margin-bottom: 10px">Подписаться на {{ category }}</a>
+{% endif %}
+{% for single_news in news %}
+    <div class="card text-center">
+      <div class="card-header">
+          <h5>{{ single_news.header|censor }}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ single_news.text_content|truncatechars:50|censor }}</p>
+        <a href="{{ single_news.get_absolute_url }}" class="btn btn-primary">Открыть новость</a>
+      </div>
+      <div class="card-footer text-muted">
+          {{ single_news.date_of_creation|date:'d M Y'}}
+      </div>
+    </div>
+    <br>
+{% endfor %}
+
+{% endblock %}

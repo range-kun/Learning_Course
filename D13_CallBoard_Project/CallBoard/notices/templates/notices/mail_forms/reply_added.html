@@ -1,0 +1,19 @@
+{% extends 'account/email/email_base.html' %}
+
+{% block title %}
+Добавлен отклик
+{% endblock %}
+
+{% block header %}
+Откли от пользователя {{ author_of_reply.username }}
+{% endblock %}
+
+{% block content %}
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly; font-family: 'Roboto', sans-serif; line-height:21px;color:#333333;font-size:14px">
+<strong>Здравствуйте {{ author_of_notice.username }}!</strong>
+<br>
+    На ваше сообщение <strong>{{ notice.header }}</strong> оставил откли пользователь <strong>{{ author_of_notice.username }}.</strong>
+    Для того что-бы просмотреть отклик перейдите в личный кабинет <a href="http://127.0.0.1:8000{% url 'personal_space' author_of_notice.id %}">по ссылке</a>.
+    Администрация нашего сайта желает вам удачного дня!
+</p>
+{% endblock %}

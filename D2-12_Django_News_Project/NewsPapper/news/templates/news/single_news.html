@@ -1,0 +1,24 @@
+{% extends 'news/default.html' %}
+{% load my_filters %}
+
+{% block title %}
+{{ single_news.header|censor }}
+{% endblock %}
+
+{% block content %}
+<h3> {{ single_news.author.user.username }} - {{ single_news.header|censor }}</h3>
+<p style="padding-left:250px; padding-right:250px">{{ single_news.text_content|censor }}</p>
+        <a href="{% url 'update_news' single_news.id %}" class="btn btn-primary">Отредактировать новость</a>
+        <a href="{% url 'delete_news' single_news.id %}" class="btn btn-danger" style="margin-left:10px">
+            Удалить новость</a>
+    <br>
+    <br>
+  <div class="card-footer text-muted">
+      {{ single_news.date_of_creation|date:'d M Y h:m'}}
+  </div>
+    <h4>
+        {% for category in single_news.category.all %}
+            <a href="{% url 'category_url' category|lower %}"><span class="badge badge-secondary">{{ category }}</span></a>
+        {% endfor %}
+    </h4>
+{% endblock %}

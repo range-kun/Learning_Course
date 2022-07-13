@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование персонажа
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <div class="text-center">
+        <input type="submit" value="Обновить" class="btn btn-success" style="margin-top: 10px">
+    </div>
+</form>
+{% endblock %}

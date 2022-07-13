@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Личный Кабинет
+{% endblock %}
+
+{% block body %}
+
+<div class="col-3" style="margin-left: 30px; margin-right: 30px;">
+    <ul class="list-group marg">
+        {% if user.username %}
+            <li class="list-group-item d-flex justify-content-md-center">
+                <div class="ms-2 me-auto">
+                  Username
+                  <div class="font-weight-bold">{{ user.username }}</div>
+                </div>
+            </li>
+        {% endif %}
+      <li class="list-group-item d-flex justify-content-md-center">
+        <div class="ms-2 me-auto">
+          Email
+          <div class="font-weight-bold">{{ user.email }}</div>
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-md-center">
+        <div class="ms-2 me-auto">
+            Раса персонажа
+            <div class="font-weight-bold">{{ user.get_race_display }}</div>
+        </div>
+      </li>
+    </ul>
+    <div class="row text-center">
+        <div class="col">
+            <a href="{% url 'update_user_info' user.id %}" class="btn btn-success">Редактировать профиль</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-6" style="margin-left: 40px">
+    <div class="row">
+        <form method="GET">
+            <div class="input-group mb-3">
+                {{ filter.form }}
+                <button class="btn btn-outline-secondary">Найти</button>
+            </div>
+        </form>
+
+    </div>
+    <h3 class="text-center">Ваши объявления</h3>
+    {% for notice in filter.qs %}
+        <div class="card text-center marg">
+          <div class="card-header">
+            {{notice.category}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{notice.header}}</h5>
+            <p class="card-text" style="text-align: left !important">{{notice.text_content}}</p>
+          </div>
+            <div class="col marg">
+                <a href="{{ notice.get_absolute_url }}" class="btn btn-success">Перейти</a>
+            </div>
+            {% for reply in notice.reply.all %}
+                <div class="row marg" style="margin-left: 0px;">
+                    <div class="col-12">
+                    <span class="text-secondary" style="float:left">От {{ reply.user.email }}:</span>
+                    </div>
+                    <div class="col-12 " style="text-align: left !important">
+                        {{ reply.text }}
+                    </div>
+                {% if reply.is_not_proceed %}
+                    <div class="col-12 text-center">
+                      <a href="{% url 'proceed_reply' reply.id %}?result=True" class="btn btn-success marg">Принять</a>
+                      <a href="{% url 'proceed_reply' reply.id %}?result=False" class="btn btn-danger marg">Отклонить</a>
+                    </div>
+                {% else %}
+                    {% if reply.accepted %}
+                        <span class="text-success">&#10004 Принято </span>
+                    {% else %}
+                        <span class="text-danger">&#10060 Отклонено </span>
+                    {% endif %}
+                {% endif %}
+                </div>
+            {% endfor %}
+
+          <div class="card-footer text-muted">
+            {{notice.date_of_creation|date:'d-m-Y'}}
+          </div>
+        </div>
+   {% endfor %}
+</div>
+<div class="col">
+</div>
+</div>
+{% endblock %}

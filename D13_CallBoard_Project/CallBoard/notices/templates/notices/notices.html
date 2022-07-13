@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Посты
+{% endblock %}
+
+{% block content %}
+
+    {% for notice in notices %}
+      <div class="card mb-3 align-items-center text-center">
+        {% if notice.photo.first %}
+        <img src="{{ notice.photo.first.image_file.url }}" class="card-img-top" style="max-width: 70%; margin-top: 3px">
+        {% else %}
+        <img src="{{ 1_photo.image_file.url }}" class="card-img-top" style="max-width: 70%; margin-top: 3px">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ notice.header }}</h5>
+          <p class="card-text">{{ notice.text_content| truncatewords:10 }}</p>
+          <a href="{{notice.get_absolute_url}}" class="btn btn-success">Перейти</a>
+        </div>
+          <div class="card-footer text-muted">
+            {{notice.date_of_creation|date:'d-m-Y'}}
+          </div>
+      </div>
+    {% endfor %}
+{% endblock %}
